@@ -1,0 +1,70 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "João",
+      "login": "joao123",
+      "password": "1234"
+    },
+    {
+      "id": 2,
+      "name": "Duda",
+      "login": "duda123",
+      "password": "1234"
+    },
+    {
+      "name": "joao",
+      "login": "123",
+      "password": "0987",
+      "id": 3
+    },
+    {
+      "name": "asd",
+      "login": "asda",
+      "password": "asd",
+      "id": 4
+    },
+    {
+      "name": "sada",
+      "login": "asdasd",
+      "password": "asdasd",
+      "id": 5
+    },
+    {
+      "name": "s",
+      "login": "s",
+      "password": "s",
+      "id": 6
+    },
+    {
+      "name": "a",
+      "login": "a",
+      "password": "a",
+      "id": 7
+    },
+    {
+      "name": "s",
+      "login": "asd",
+      "password": "asd",
+      "id": 8
+    },
+    {
+      "name": "s",
+      "login": "sad",
+      "password": "asdad",
+      "id": 9
+    },
+    {
+      "name": "s",
+      "login": "sdsa",
+      "password": "as",
+      "id": 10
+    },
+    {
+      "name": "asdas",
+      "login": "asdsad",
+      "password": "asdasdas",
+      "id": 11
+    }
+  ]
+}
