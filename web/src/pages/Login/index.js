@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import AxiosRoutes from '../../Services/AxiosRoutes'
 
 import { Container, FormContainer, LoginForm } from './styles';
 
@@ -12,27 +12,27 @@ function Login() {
         password: null
     }
 
-    const [data, setData] = useState(user)
-    const [isValid, setIsValid] = useState(false)
+    const inputCheck = {
+        login: null,
+        password: null
+    }
+
     const navigate = useNavigate()
 
+    const [data, setData] = useState(user)
+    const [isValid, setIsValid] = useState(false)
+    const [input, setInput] = useState(inputCheck)
 
+    
     async function login() {
-        const url = 'http://localhost:5000/users'
-        try {
-            const request = await axios.get(url)
+        const request = await AxiosRoutes.checkLogin('/users', data, setIsValid, navigate)
 
-            request.data.find(user => {
-                if (data.login === user.login && data.password === user.password) {
-                    console.log('valido')
-                    setIsValid(true)
-                    setTimeout(() => navigate('/home'), 500)
-                }
-            })
 
-        } catch (error) {
-            console.log(error)
-        }
+    }
+
+    function onChange(event) {
+        setData({ ...data, login: event.target.value })
+        setInput({...input, ['login' || 'password']: event.target.value })
     }
 
     return (
@@ -43,11 +43,11 @@ function Login() {
                     <LoginForm>
                         <div className="form-group" >
                             <label htmlFor="login-login" >Login</label>
-                            <input onChange={(event) => setData({ ...data, login: event.target.value })} id="login-login" type="text" placeholder="Login" />
+                            <input className={input.login ? '' : 'error'} onChange={(event) => onChange(event)} id="login-login" type="text" placeholder="Login" />
                         </div>
                         <div className="form-group" >
                             <label htmlFor="login-password" >Senha</label>
-                            <input onChange={(event) => setData({ ...data, password: event.target.value })} id="login-password" type="password" placeholder="Senha" />
+                            <input className={input.password ? '' : 'error'} onChange={(event) => onChange(event)} id="login-password" type="password" placeholder="Senha" />
                         </div>
                         <button type="button" onClick={login}>Entrar</button>
                     </LoginForm>

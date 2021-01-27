@@ -20,4 +20,8 @@ export const Container = styled.div`
         margin-bottom: 10px;
     }
 
+    .error {
+        border: 1px solid red;
+    }
+
 `;

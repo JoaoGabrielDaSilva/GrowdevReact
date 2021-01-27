@@ -81,4 +81,8 @@ export const LoginForm = styled.form`
         cursor: pointer;
         transition: 0.3s ease-in-out;
     }
+
+    .error {
+        border: 1px solid red;
+    }
 `;

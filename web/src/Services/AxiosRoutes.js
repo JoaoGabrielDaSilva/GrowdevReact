@@ -10,16 +10,25 @@ class AxiosRoutes {
 
         const currentUsers = await this.getUsers('/users')
 
+        if (!userInfo.name || !userInfo.login || !userInfo.password) {
+            valid = false
+        }
+
         currentUsers.find(user => {
             if (user.login === userInfo.login) {
                 valid = false
             }
         })
 
-        const request = await axios.post(`${this.baseUrl}${params}`, userInfo)
+        let request = null
+
+        if (valid) {
+            request = await axios.post(`${this.baseUrl}${params}`, userInfo)
+        } else {
+            request = null
+        }
         
         return request
-
     }
 
     getUsers(params) {
@@ -28,6 +37,18 @@ class AxiosRoutes {
             .catch(error => console.log(`getUsers: ${error}`))
 
         return data
+    }
+
+    async checkLogin(params, userInfo, setIsValid, navigate) {
+        const request = await this.getUsers('/users')
+
+        request.forEach(user => {
+            if (userInfo.login === user.login && userInfo.password === user.password) {
+                console.log('valido')
+                setIsValid(true)
+                setTimeout(() => navigate('/home'), 500)
+            } 
+        })
     }
 }
 
